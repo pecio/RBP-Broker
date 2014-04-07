@@ -4,12 +4,12 @@ local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
 local AceConfig = LibStub("AceConfig-3.0")
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
 
--- local L = LibStub("AceLocale-3.0"):GetLocate("LDBBroker")
+local L = LibStub("AceLocale-3.0"):GetLocate("RBPBroker")
 
 local UPDATEPERIOD, elapsed = 0.5, 0
 local RBPSPELL = 125439
 
-local dataobj = ldb:NewDataObject("Revive Battle Pets", { type = "data source", text = "Revive Battle Pets" })
+local dataobj = ldb:NewDataObject(L['Revive Battle Pets'], { type = "data source", text = L['Revive Battle Pets'] })
 local f = CreateFrame("frame")
 
 RBPBroker = LibStub("AceAddon-3.0"):NewAddon("RBP-Broker", "AceConsole-3.0")
@@ -21,24 +21,24 @@ local options = {
   args = {
     main = {
       type = 'group',
-      name = 'Main',
+      name = L['Main'],
       args = {
         cooldown = {
           type = 'toggle',
-          name = 'Show Cooldown',
-          desc = 'Show cooldown time for Revive Battle Pets spell in bar',
+          name = L['Show Cooldown'],
+          desc = L['Show cooldown time for Revive Battle Pets spell in bar'],
           set = function(info, val) RBPBroker.config.profile.cooldown = val end,
           get = function(info) return RBPBroker.config.profile.cooldown end
         },
         notifyEnd = {
           type ='select',
-          name = 'Notify Availability',
-          desc = 'Notify the player when cooldown time finishes',
+          name = L['Notify Availability'],
+          desc = L['Notify the player when cooldown time finishes'],
           values = {
-            n0 = 'None',
-            n1 = 'With Level Up Sound',
-            n2 = 'In Chat',
-            n3 = 'Both'
+            n0 = L['None'],
+            n1 = L['With Level Up Sound'],
+            n2 = L['In Chat'],
+            n3 = L['Both']
           },
           set = function(info, val) RBPBroker.config.profile.notifyEnd = val end,
           get = function(info) return RBPBroker.config.profile.notifyEnd end
