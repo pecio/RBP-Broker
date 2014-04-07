@@ -135,4 +135,9 @@ end
 
 function dataobj:OnTooltipShow()
   self:AddLine(RBPBroker.RBPname)
+  self:AddLine('Click for options')
+end
+
+function dataobj:OnClick(button)
+  InterfaceOptionsFrame_OpenToCategory(RBPBroker.menu)
 end
