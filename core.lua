@@ -69,7 +69,7 @@ function RBPBroker:OnEnable()
   local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(125439)
   PetHealthBroker.RBPicon = icon
   PetHealthBroker.RBPname = name
-  
+
   options.args.main.args.rbp.name = name
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
 
@@ -78,5 +78,5 @@ function RBPBroker:OnEnable()
 end
 
 function RBPBroker:OnInitialize()
-  self.config = LibStub("ACeDB-3.0"):New("RBPBrokerConfig", defaultOptions, true)
+  self.config = LibStub("AceDB-3.0"):New("RBPBrokerConfig", defaultOptions, true)
 end
