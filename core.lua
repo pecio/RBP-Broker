@@ -75,7 +75,7 @@ function RBPBroker:OnEnable()
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
 
   AceConfigReg:RegisterOptionsTable(RBPBroker.name, options)
-  RBPBroker.menu = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("RBP-Broker", "Revive Battle Pets", "Broker")
+  RBPBroker.menu = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("RBP-Broker", RBPBroker.RBPname, "Broker")
 end
 
 function RBPBroker:OnInitialize()
