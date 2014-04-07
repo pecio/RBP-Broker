@@ -12,3 +12,71 @@ local dataojb = ldb:NewDataObject("Revive Battle Pets", { type = "data source", 
 local f = CreateFrame("frame")
 
 RBPBroker = LibStub("AceAddon-3.0"):NewAddon("RDB-Broker", "AceConsole-3.0")
+
+local options = {
+  name = "RBP-Broker",
+  handler = RBPBroker,
+  type = 'group',
+  args = {
+    main = {
+      type = 'group',
+      name = 'Main',
+      args = {
+        cooldown = {
+          type = 'toggle',
+          name = 'Show Cooldown',
+          desc = 'Show cooldown time for Revive Battle Pets spell in bar',
+          set = function(info, val) RBPBroker.config.profile.cooldown = val end,
+          get = function(info) return RBPBroker.config.profile.cooldown end
+        },
+        notifyEnd = {
+          type ='select',
+          name = 'Notify Availability',
+          desc = 'Notify the player when cooldown time finishes',
+          values = {
+            n0 = 'None',
+            n1 = 'With Level Up Sound',
+            n2 = 'In Chat',
+            n3 = 'Both'
+          },
+          set = function(info, val) RBPBroker.config.profile.notifyEnd = val end,
+          get = function(info) return RBPBroker.config.profile.notifyEnd end
+        }
+      }
+    }
+  }
+}
+
+local defaultOptions = {
+  profile = {
+    cooldown = true,
+    notifyEnd = 'n0'
+  }
+}
+
+function RBPBroker:OnEnable()
+  local brokerOptions = AceConfigReg:GetOptionsTable("Broker", "Dialog", "LibDataBroekr-1.1")
+  if not brokerOptions then
+    brokerOptions = {
+      type = 'group',
+      name = 'Broker',
+      args = {}
+    }
+    AceConfigReg:RegisterOptionsTable('Broker', brokerOptions)
+  end
+
+  -- Get and store Revive Battle Pets icon and name
+  local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(125439)
+  PetHealthBroker.RBPicon = icon
+  PetHealthBroker.RBPname = name
+  
+  options.args.main.args.rbp.name = name
+  options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
+
+  AceConfigReg:RegisterOptionsTable(RBPBroker.name, options)
+  RBPBroker.menu = LibStub("AceConfigDialog-3.0")AddToBlizOptions("RBP-Broker", "Revive Battle Pets", "Broker")
+end
+
+function RBPBroker:OnInitialize()
+  self.config = LibStub("ACeDB-3.0"):New("RBPBrokerConfig", defaultOptions, true)
+end
