@@ -98,9 +98,6 @@ f:SetScript('OnUpdate', function(self, elap)
 
   if cooldown > 0 then
     RBPBroker.inCooldown = true
-    local min = math.floor(cooldown / 60)
-    local seg = cooldown % 60
-    text = text .. string.format(" |cFFFFFFFF%d:%02d|r", min, seg)
   else
     if RBPBroker.inCooldown then -- finished
       RBPBroker.inCooldown = false
