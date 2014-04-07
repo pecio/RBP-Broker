@@ -12,7 +12,7 @@ local RBPSPELL = 125439
 local dataobj = ldb:NewDataObject("Revive Battle Pets", { type = "data source", text = "Revive Battle Pets" })
 local f = CreateFrame("frame")
 
-RBPBroker = LibStub("AceAddon-3.0"):NewAddon("RDB-Broker", "AceConsole-3.0")
+RBPBroker = LibStub("AceAddon-3.0"):NewAddon("RBP-Broker", "AceConsole-3.0")
 
 local options = {
   name = "RBP-Broker",
