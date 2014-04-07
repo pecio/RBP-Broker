@@ -103,7 +103,7 @@ f:SetScript('OnUpdate', function(self, elap)
     if RBPBroker.inCooldown then -- finished
       RBPBroker.inCooldown = false
 
-      if not RBPBroker.config.profile.notifyEnd == 'n0' then
+      if not (RBPBroker.config.profile.notifyEnd == 'n0') then
         RBPBroker:NotifyEnd()
       end
     end
@@ -113,10 +113,10 @@ f:SetScript('OnUpdate', function(self, elap)
 end)
 
 function RBPBroker:NotifyEnd()
-  if RBPBroker.config.profile.notifyEnd == 'n1' or RBPBroker.config.profile.notifyEnd == 'n3' then -- sound or both
+  if (RBPBroker.config.profile.notifyEnd == 'n1') or (RBPBroker.config.profile.notifyEnd == 'n3') then -- sound or both
     PlaySound("LEVELUP")
   end
-  if RBPBroker.config.profile.notifyEnd == 'n2' or RBPBroker.config.profile.notifyEnd == 'n3' then -- chat or both
+  if (RBPBroker.config.profile.notifyEnd == 'n2') or (RBPBroker.config.profile.notifyEnd == 'n3') then -- chat or both
     RBPBroker:Printf('%s is ready', string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
   end
 end
