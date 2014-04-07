@@ -123,7 +123,7 @@ function RBPBroker:NotifyEnd()
   end
 end
 
-function RBPBroker:GetSortTime(seconds)
+function RBPBroker:GetShortTime(seconds)
   if seconds > 0 then
     local min = math.floor(seconds / 60)
     local sec = seconds % 60
