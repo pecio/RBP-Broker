@@ -15,3 +15,15 @@ L['None'] = true
 L['With Level Up Sound'] = true
 L['In Chat'] = true
 L['Both'] = true
+
+-- Notifications
+-- Cooldown finished, RBP is ready; %s will be replaced by icon and name
+L['%s is ready'] = true
+
+
+-- Display
+-- Shortest possible way to say it is ready
+L['Ready'] = true
+
+-- Tooltip
+L['Click for options'] = true

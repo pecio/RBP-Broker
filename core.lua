@@ -117,7 +117,7 @@ function RBPBroker:NotifyEnd()
     PlaySound("LEVELUP")
   end
   if (RBPBroker.config.profile.notifyEnd == 'n2') or (RBPBroker.config.profile.notifyEnd == 'n3') then -- chat or both
-    RBPBroker:Printf('%s is ready', string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
+    RBPBroker:Printf(L['%s is ready'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
   end
 end
 
@@ -127,13 +127,13 @@ function RBPBroker:GetShortTime(seconds)
     local sec = seconds % 60
     return string.format('|cFFFFFFFF%d:%02d|r', min, sec)
   else
-    return string.format('|cFF00FF00%s|r', 'Ready')
+    return string.format('|cFF00FF00%s|r', L['Ready'])
   end
 end
 
 function dataobj:OnTooltipShow()
   self:AddLine(RBPBroker.RBPname)
-  self:AddLine('Click for options')
+  self:AddLine(L['Click for options'])
 end
 
 function dataobj:OnClick(button)
