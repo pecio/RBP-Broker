@@ -64,6 +64,7 @@ function RBPBroker:OnEnable()
       args = {}
     }
     AceConfigReg:RegisterOptionsTable('Broker', brokerOptions)
+    LibStub('AceConfigDialog-3.0'):AddToBlizOptions('Broker', 'Broker')
   end
 
   -- Get and store Revive Battle Pets icon and name
@@ -75,7 +76,7 @@ function RBPBroker:OnEnable()
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
 
   AceConfigReg:RegisterOptionsTable(RBPBroker.name, options)
-  RBPBroker.menu = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("RBP-Broker", RBPBroker.RBPname, "Broker")
+  RBPBroker.menu = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(RBPBroker.name, RBPBroker.RBPname, "Broker")
 end
 
 function RBPBroker:OnInitialize()
