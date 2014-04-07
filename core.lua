@@ -132,3 +132,7 @@ function RBPBroker:GetSortTime(seconds)
     return string.format('|cFF00FF00%s|r', 'Ready')
   end
 end
+
+function dataobj:OnTooltipShow()
+  self:AddLine(RBPBroker.RBPname)
+end
