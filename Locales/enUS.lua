@@ -11,8 +11,6 @@ L['Notify Availability'] = true
 L['Notify the player when cooldown time finishes'] = true
 L['None'] = true
 L['With Level Up Sound'] = true
-L['None'] = true
-L['With Level Up Sound'] = true
 L['In Chat'] = true
 L['Both'] = true
 
