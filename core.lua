@@ -72,7 +72,7 @@ function RBPBroker:OnEnable()
   RBPBroker.RBPicon = icon
   RBPBroker.RBPname = name
 
-  options.args.main.name = name
+  options.name = name
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
 
   AceConfigReg:RegisterOptionsTable(RBPBroker.name, options)
