@@ -68,8 +68,8 @@ function RBPBroker:OnEnable()
 
   -- Get and store Revive Battle Pets icon and name
   local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(RBPSPELL)
-  PetHealthBroker.RBPicon = icon
-  PetHealthBroker.RBPname = name
+  RBPBroker.RBPicon = icon
+  RBPBroker.RBPname = name
 
   options.args.main.name = name
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
