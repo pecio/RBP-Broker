@@ -4,7 +4,7 @@ local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
 local AceConfig = LibStub("AceConfig-3.0")
 local AceConfigReg = LibStub("AceConfigRegistry-3.0")
 
-local L = LibStub("AceLocale-3.0"):GetLocate("RBPBroker")
+local L = LibStub("AceLocale-3.0"):GetLocale("RBPBroker")
 
 local UPDATEPERIOD, elapsed = 0.5, 0
 local RBPSPELL = 125439
