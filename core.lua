@@ -89,29 +89,46 @@ f:SetScript('OnUpdate', function(self, elap)
 
   local text = string.format('|T%s:16|t', RBPBroker.RBPicon)
 
+  local start, duration, enabled = GetSpellCooldown(RBPSPELL)
+  local cooldown = start + duration - GetTime()
+
   if RBPBroker.config.profile.cooldown then
-    local start, duration, enabled = GetSpellCooldown(RBPSPELL)
+    text = text .. RBPBroker:GetShortTime(cooldown)
+  end
 
-    local cooldown = start + duration - GetTime()
+  if cooldown > 0 then
+    RBPBroker.inCooldown = true
+    local min = math.floor(cooldown / 60)
+    local seg = cooldown % 60
+    text = text .. string.format(" |cFFFFFFFF%d:%02d|r", min, seg)
+  else
+    if RBPBroker.inCooldown then -- finished
+      RBPBroker.inCooldown = false
 
-    if cooldown > 0 then
-      RBPBroker.inCooldown = true
-      local min = math.floor(cooldown / 60)
-      local seg = cooldown % 60
-      text = text .. string.format(" |cFFFFFFFF%d:%02d|r", min, seg)
-    else
-      if RBPBroker.inCooldown then -- finished
-        RBPBroker.inCooldown = false
-
-        if RBPBroker.config.profile.notifyEnd == 'n1' or RBPBroker.config.profile.notifyEnd == 'n3' then -- sound or both
-          PlaySound("LEVELUP")
-        end
-        if RBPBroker.config.profile.notifyEnd == 'n2' or RBPBroker.config.profile.notifyEnd == 'n3' then -- chat or both
-          RBPBroker:Printf('%s is ready', string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
-        end
+      if not RBPBroker.config.profile.notifyEnd == 'n0' then
+        RBPBroker:NotifyEnd()
       end
-
-      text = text .. string.format(" |cFF00FF0%s|r", "Ready")
     end
   end
+
+  dataobj.text = text
 end)
+
+function RBPBroker:NotifyEnd()
+  if RBPBroker.config.profile.notifyEnd == 'n1' or RBPBroker.config.profile.notifyEnd == 'n3' then -- sound or both
+    PlaySound("LEVELUP")
+  end
+  if RBPBroker.config.profile.notifyEnd == 'n2' or RBPBroker.config.profile.notifyEnd == 'n3' then -- chat or both
+    RBPBroker:Printf('%s is ready', string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
+  end
+end
+
+function RBPBroker:GetSortTime(seconds)
+  if seconds > 0 then
+    local min = math.floor(seconds / 60)
+    local sec = seconds % 60
+    return string.format('|cFFFFFFFF%d:%02d|r', min, sec)
+  else
+    return string.format('|cFF00FF00%s|r', 'Ready')
+  end
+end
