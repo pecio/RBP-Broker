@@ -71,7 +71,7 @@ function RBPBroker:OnEnable()
   PetHealthBroker.RBPicon = icon
   PetHealthBroker.RBPname = name
 
-  options.args.main.args.rbp.name = name
+  options.args.main.name = name
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
 
   AceConfigReg:RegisterOptionsTable(RBPBroker.name, options)
