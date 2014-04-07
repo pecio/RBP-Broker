@@ -141,3 +141,15 @@ end
 function dataobj:OnClick(button)
   InterfaceOptionsFrame_OpenToCategory(RBPBroker.menu)
 end
+
+function dataobj:OnEnter()
+  GameTooltip:SetOwner(self, "ANCHOR_NONE")
+  GameTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT")
+  GameTooltip:ClearLines()
+  dataobj.OnTooltipShow(GameTooltip)
+  GameTooltip:Show()
+end
+
+function dataobj:OnLeave()
+  GameTooltip:Hide()
+end
