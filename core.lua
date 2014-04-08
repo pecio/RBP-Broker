@@ -201,7 +201,7 @@ function RBPBroker:NotifyCurrentStatus()
   local start, duration, enabled = GetSpellCooldown(RBPSPELL)
   local cooldown = start + duration - GetTime()
 
-  if cooldown > 0 then
+  if cooldown >= 1 then
     RBPBroker:Printf(L['%s ready in %s'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname), SecondsToTime(cooldown))
   else
     RBPBroker:Printf(L['%s is ready'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
