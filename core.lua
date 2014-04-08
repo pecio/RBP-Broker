@@ -42,6 +42,27 @@ local options = {
           },
           set = function(info, val) RBPBroker.config.profile.notifyEnd = val end,
           get = function(info) return RBPBroker.config.profile.notifyEnd end
+        },
+        currentStatus = {
+          type = 'group',
+          inline = true,
+          name = L['Report Current Status'],
+          args = {
+            battleStart = {
+              type = 'toggle',
+              name = L['At Battle Start'],
+              desc = L['Notify current status in chat after battle start animation finishes'],
+              set = function(info, val) RBPBroker.config.profile.battleStart = val end,
+              get = function(info) return RBPBroker.config.profile.battleStart end
+            },
+            battleEnd = {
+              type = 'toggle',
+              name = L['At Battle End'],
+              desc = L['Notify current status in chat on returning to normal game'],
+              set = function(info, val) RBPBroker.config.profile.battleEnd = val end,
+              get = function(info) return RBPBroker.config.profile.battleEnd end
+            }
+          }
         }
       }
     }
@@ -51,7 +72,9 @@ local options = {
 local defaultOptions = {
   profile = {
     cooldown = true,
-    notifyEnd = 'n0'
+    notifyEnd = 'n0',
+    battleStart = false,
+    battleEnd = false
   }
 }
 
@@ -77,6 +100,13 @@ function RBPBroker:OnEnable()
 
   AceConfigReg:RegisterOptionsTable(RBPBroker.name, options)
   RBPBroker.menu = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(RBPBroker.name, RBPBroker.RBPname, "Broker")
+
+  -- Register event handlers and events
+  f:SetScript('OnEvent', function(self, event, ...)
+    RBPBroker[event](self, ...)
+  end)
+  f:RegisterEvent('PET_BATTLE_OPENING_DONE')
+  f:RegisterEvent('PET_BATTLE_CLOSE')
 end
 
 function RBPBroker:OnInitialize()
@@ -150,4 +180,27 @@ end
 
 function dataobj:OnLeave()
   GameTooltip:Hide()
+end
+
+function RBPBroker.PET_BATTLE_OPENING_DONE(...)
+  if RBPBroker.config.profile.battleStart then
+    RBPBroker:NotifyCurrentStatus()
+  end
+end
+
+function RBPBroker.PET_BATTLE_CLOSE(...)
+  if RBPBroker.config.profile.battleEnd then
+    RBPBroker:NotifyCurrentStatus()
+  end
+end
+
+function RBPBroker:NotifyCurrentStatus()
+  local start, duration, enabled = GetSpellCooldown(RBPSPELL)
+  local cooldown = start + duration - GetTime()
+
+  if cooldown > 0 then
+    RBPBroker:Printf(L['%s ready in %s'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname), SecondsToTime(cooldown))
+  else
+    RBPBroker:Printf(L['%s is ready'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
+  end
 end
