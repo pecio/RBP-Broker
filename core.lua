@@ -189,7 +189,10 @@ function RBPBroker.PET_BATTLE_OPENING_DONE(...)
 end
 
 function RBPBroker.PET_BATTLE_CLOSE(...)
-  if RBPBroker.config.profile.battleEnd then
+  -- Event fires twice. The first time, [petbattle] macro conditional
+  -- evalueates to true, the second to false
+  local result, target = SecureCmdOptionParse("[petbattle] In;Out")
+  if RBPBroker.config.profile.battleEnd and result == "Out" then
     RBPBroker:NotifyCurrentStatus()
   end
 end
