@@ -94,6 +94,7 @@ function RBPBroker:OnEnable()
   local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(RBPSPELL)
   RBPBroker.RBPicon = icon
   RBPBroker.RBPname = name
+  RBPBroker.RBPfullName = string.format("|T%s:16|t %s", icon, name)
 
   options.name = name
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
@@ -147,7 +148,7 @@ function RBPBroker:NotifyEnd()
     PlaySound("LEVELUP")
   end
   if (RBPBroker.config.profile.notifyEnd == 'n2') or (RBPBroker.config.profile.notifyEnd == 'n3') then -- chat or both
-    RBPBroker:Printf(L['%s is ready'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
+    RBPBroker:Printf(L['%s is ready'], RBPBroker.RBPfullName)
   end
 end
 
@@ -202,8 +203,8 @@ function RBPBroker:NotifyCurrentStatus()
   local cooldown = start + duration - GetTime()
 
   if cooldown >= 1 then
-    RBPBroker:Printf(L['%s ready in %s'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname), SecondsToTime(cooldown))
+    RBPBroker:Printf(L['%s ready in %s'], RBPBroker.RBPfullName, SecondsToTime(cooldown))
   else
-    RBPBroker:Printf(L['%s is ready'], string.format('|T%s:16|t %s', RBPBroker.RBPicon, RBPBroker.RBPname))
+    RBPBroker:Printf(L['%s is ready'], RBPBroker.RBPfullName)
   end
 end
