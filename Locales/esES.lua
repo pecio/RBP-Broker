@@ -34,4 +34,5 @@ L['%s ready in %s'] = '%s lista en %s'
 L['Ready'] = 'Lista'
 
 -- Tooltip
-L['Click for options'] = 'Click para opciones'
+L['Left Click to open Pet Journal'] = 'Click Izquierdo para abrir el Diario de Mascotas'
+L['Click for options'] = 'Click Derecho para opciones'

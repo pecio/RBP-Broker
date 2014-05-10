@@ -113,6 +113,7 @@ end
 function RBPBroker:OnInitialize()
   self.config = LibStub("AceDB-3.0"):New("RBPBrokerConfig", defaultOptions, true)
 end
+
 f:SetScript('OnUpdate', function(self, elap)
   elapsed = elapsed + elap
   if elapsed < UPDATEPERIOD then return end
@@ -164,11 +165,16 @@ end
 
 function dataobj:OnTooltipShow()
   self:AddLine(RBPBroker.RBPname)
-  self:AddLine(L['Click for options'])
+  self:AddLine(L['Left Click to open Pet Journal'])
+  self:AddLine(L['Right Click for options'])
 end
 
 function dataobj:OnClick(button)
-  InterfaceOptionsFrame_OpenToCategory(RBPBroker.menu)
+  if (button == "LeftButton") then
+    TogglePetJournal(2)
+  elseif (button == "RightButton") then
+    InterfaceOptionsFrame_OpenToCategory(RBPBroker.menu)
+  end
 end
 
 function dataobj:OnEnter()

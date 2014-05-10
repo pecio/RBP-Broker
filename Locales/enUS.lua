@@ -32,4 +32,5 @@ L['%s ready in %s'] = true
 L['Ready'] = true
 
 -- Tooltip
-L['Click for options'] = true
+L['Right Click for options'] = true
+L['Left Click to open Pet Journal'] = true
