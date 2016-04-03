@@ -171,7 +171,7 @@ end
 
 function dataobj:OnClick(button)
   if (button == "LeftButton") then
-    TogglePetJournal(2)
+    ToggleCollectionsJournal(2)
   elseif (button == "RightButton") then
     InterfaceOptionsFrame_OpenToCategory(RBPBroker.menu)
   end
