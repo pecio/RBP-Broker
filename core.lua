@@ -92,7 +92,7 @@ function RBPBroker:OnEnable()
 
   -- Get and store Revive Battle Pets icon and name
   local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(RBPSPELL)
-  RBPBroker.RBPicon = icon
+  dataobj.icon = icon
   RBPBroker.RBPname = name
   RBPBroker.RBPfullName = string.format("|T%s:16|t %s", icon, name)
 
@@ -120,7 +120,7 @@ f:SetScript('OnUpdate', function(self, elap)
 
   elapsed = 0
 
-  local text = string.format('|T%s:16|t', RBPBroker.RBPicon)
+  local text = ''
 
   local start, duration, enabled = GetSpellCooldown(RBPSPELL)
   local cooldown = start + duration - GetTime()
