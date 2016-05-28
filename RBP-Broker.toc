@@ -4,7 +4,7 @@
 ## Notes: Displays cooldown and/or alerts of Revive Battle Pets skill availability
 ## Notes-esES: Muestra el tiempo de refresco y/o alerta de la disponibilidad de la habilidad Revivir Mascotas de Batalla
 ## Author: Pecio
-## Version: 6.2.1
+## Version: 6.2.2
 ## SavedVariables: RBPBrokerConfig
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
