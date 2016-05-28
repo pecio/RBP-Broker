@@ -94,7 +94,7 @@ function RBPBroker:OnEnable()
   local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(RBPSPELL)
   dataobj.icon = icon
   RBPBroker.RBPname = name
-  RBPBroker.RBPfullName = string.format("|T%s:16|t %s", icon, name)
+  RBPBroker.RBPfullName = string.format("|T%s:14|t %s", icon, name)
 
   options.name = name
   options.args.profile = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.config)
