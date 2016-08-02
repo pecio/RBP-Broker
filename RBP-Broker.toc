@@ -1,10 +1,10 @@
-## Interface: 60200
+## Interface: 70000
 ## Title: Revive Battle Pets Watcher
 ## Title-esES: Alerta Revivir Mascotas de Batalla
 ## Notes: Displays cooldown and/or alerts of Revive Battle Pets skill availability
 ## Notes-esES: Muestra el tiempo de refresco y/o alerta de la disponibilidad de la habilidad Revivir Mascotas de Batalla
 ## Author: Pecio
-## Version: 6.2.2
+## Version: 7.0b1
 ## SavedVariables: RBPBrokerConfig
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: delayed
